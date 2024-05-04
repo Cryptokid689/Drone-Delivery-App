@@ -1,0 +1,33 @@
+DELIVERY PROCESS:
+    sender makes delivery request
+    request goes to receiver
+    request goes to admin only if receiver accepts
+    admin approves delivery
+    sender makes payment
+    delivery is finally scheduled
+
+
+
+DELIVERY STATES (FOR ADMIN):
+    pending:
+        sender approves
+        receiver approves
+        admin approves
+        sender hasn't paid
+        drone delivery hasn't been completed
+
+    adminUnApproved:
+        sender approves
+        receiver approves
+        admin hasn't approved YET
+
+    cancelled:
+        sender or receiver rejects
+        completed is false
+
+    completed:
+        sender approves
+        receiver approves
+        admin approves
+        sender has paid
+        drone delivery has been completed
