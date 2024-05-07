@@ -13,7 +13,6 @@ DELIVERY STATES (FOR ADMIN):
         sender approves
         receiver approves
         admin approves
-        sender hasn't paid
         drone delivery hasn't been completed
 
     adminUnApproved:

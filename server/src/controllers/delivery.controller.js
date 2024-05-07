@@ -121,7 +121,7 @@ export const getPendingDeliveries = async(req, res) => {
             senderApproval: "approved",
             adminApproval: "approved",
             receiverApproval: "approved",
-            hasPaid: false,
+            // hasPaid: false,
             completed: false,
         }, 
         { '__v': 0 }).sort({ createdAt: -1 })
