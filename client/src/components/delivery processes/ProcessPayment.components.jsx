@@ -16,7 +16,7 @@ function ProcessPayment(props) {
                     <p>Account Name: <span style={{ color: "black" }}>United Bank For Africa</span></p>
                 </div>
             </div>
-            <button onClick={() => props.goToElement(props.index+1)} type="button" class="btn btn-outline-success mb-3">Confirm Payment</button>
+            <button onClick={() => props.goToElement(props.index+1)} type="button" className="btn btn-outline-success mb-3">Confirm Payment</button>
         </div>
     )
 }

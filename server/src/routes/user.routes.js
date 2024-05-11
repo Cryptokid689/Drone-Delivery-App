@@ -10,7 +10,7 @@ const usersRouter = express.Router()
 
 usersRouter.post("/create", createNewUser)
 usersRouter.post("/login", loginUser)
-usersRouter.post("/:id", getUser)
+usersRouter.post("/id/:id", getUser)
 
 
 export default usersRouter

@@ -1,25 +1,25 @@
 import React from 'react';
+import { capitalizeWords } from '../utils/utils';
 
-
-function AdminAllDeliveries() {
+function AdminDeliveries(props) {
 
 
     return (
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h2 class="m-0">All Deliveries</h2>
+        <div className="container-fluid p-0">
+            <div className="row justify-content-center">
+                <div className="col-lg-12">
+                    <div className="white_card card_height_100 mb_30">
+                        <div className="white_card_header">
+                            <div className="box_header m-0">
+                                <div className="main-title">
+                                    <h2 className="m-0">{capitalizeWords(props.type)} Deliveries</h2>
                                 </div>
                             </div>
                         </div>
-                        <div class="white_card_body">
-                            <div class="QA_section">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-dark">
+                        <div className="white_card_body">
+                            <div className="QA_section">
+                                <div className="table-responsive">
+                                    <table className="table table-striped table-admin">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
@@ -43,12 +43,14 @@ function AdminAllDeliveries() {
                                                 <td>Jacob</td>
                                                 <td>Thornton</td>
                                                 <td className='pending'>pending</td>
+                                                <td><span className='view-button'>View</span></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">3</th>
                                                 <td>Larry</td>
                                                 <td>the Bird</td>
                                                 <td className='unprocessed'>Unprocessed</td>
+                                                <td><span className='view-button'>View</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -64,4 +66,4 @@ function AdminAllDeliveries() {
 }
 
 
-export default AdminAllDeliveries
+export default AdminDeliveries

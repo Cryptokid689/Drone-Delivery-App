@@ -8,3 +8,15 @@ export function capitalizeWords(text) {
     });
     return capitalizedWords.join(' ');
 }
+
+export function checkFormFields(formData) {
+    const emptyFields = [];
+
+    for (const field in formData) {
+        if (!formData[field] && field !== "isAdmin") {
+            emptyFields.push(field);
+        }
+    }
+
+    return emptyFields;
+}

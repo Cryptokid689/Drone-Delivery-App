@@ -5,75 +5,75 @@ function AdminViewDrones() {
 
 
     return (
-        <div class="container-fluid p-0 ">
-            <div class="row">
-                <div class="col-12">
-                    <div class="page_title_box d-flex align-items-center justify-content-between">
-                        <div class="page_title_left">
-                            <h3 class="f_s_30 f_w_700 dark_text">All Drones</h3>
+        <div className="container-fluid p-0 ">
+            <div className="row">
+                <div className="col-12">
+                    <div className="page_title_box d-flex align-items-center justify-content-between">
+                        <div className="page_title_left">
+                            <h3 className="f_s_30 f_w_700 dark_text">All Drones</h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="white_card position-relative mb_20 ">
-                        <div class="card-body">
-                            <img src={itemPic} alt="" class="d-block mx-auto my-4" height="150" />
-                            <div class="row my-4">
-                                <div class="col">
-                                    <span style={{ background: "green", color: "white" }} class="badge_btn_3  mb-1">Available</span> 
-                                    <a href class="f_w_400 color_text_3 f_s_14 d-block">LARGE</a>
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="white_card position-relative mb_20 ">
+                        <div className="card-body">
+                            <img src={itemPic} alt="" className="d-block mx-auto my-4" height="150" />
+                            <div className="row my-4">
+                                <div className="col">
+                                    <span style={{ background: "green", color: "white" }} className="badge_btn_3  mb-1">Available</span> 
+                                    <a href className="f_w_400 color_text_3 f_s_14 d-block">LARGE</a>
                                 </div>
-                                <div class="col-auto">
-                                    <h4 class="text-dark mt-0">#40,000</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div style={{cursor: "pointer"}} class="col-md-4">
-                    <div class="white_card position-relative mb_20 grey-div">
-                        <div class="card-body">
-                            <img src={itemPic} alt="" class="d-block mx-auto my-4 grey-img" height="150" />
-                            <div class="row my-4">
-                                <div class="col">
-                                    <span style={{ background: "red", color: "white" }} class="badge_btn_3  mb-1">In Use</span> 
-                                    <a style={{ color: "white" }} href class="f_w_400 f_s_14 d-block">LARGE</a>
-                                </div>
-                                <div class="col-auto">
-                                    <h4 class="text-dark mt-0">#40,000</h4>
+                                <div className="col-auto">
+                                    <h4 className="text-dark mt-0">#40,000</h4>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="white_card position-relative mb_20 ">
-                        <div class="card-body">
-                            <div class="ribbon1 rib1-primary"><span class="text-white text-center rib1-primary">50% off</span>
+                <div style={{cursor: "pointer"}} className="col-md-4">
+                    <div className="white_card position-relative mb_20 grey-div">
+                        <div className="card-body">
+                            <img src={itemPic} alt="" className="d-block mx-auto my-4 grey-img" height="150" />
+                            <div className="row my-4">
+                                <div className="col">
+                                    <span style={{ background: "red", color: "white" }} className="badge_btn_3  mb-1">In Use</span> 
+                                    <a style={{ color: "white" }} href className="f_w_400 f_s_14 d-block">LARGE</a>
+                                </div>
+                                <div className="col-auto">
+                                    <h4 className="text-dark mt-0">#40,000</h4>
+                                </div>
                             </div>
-                            <img src="img/products/02.png" alt="" class="d-block mx-auto my-4" height="150" />
-                            <div class="row my-4">
-                                <div class="col"><span class="badge_btn_3  mb-1">Life Style</span> <a href
-                                        class="f_w_400 color_text_3 f_s_14 d-block">Unique Blue Bag</a></div>
-                                <div class="col-auto">
-                                    <h4 class="text-dark mt-0">$49.00 <small
-                                            class="text-muted font-14"><del>$99.00</del></small></h4>
-                                    <ul class="list-inline mb-0 product-review align-self-center">
-                                        <li class="list-inline-item"><i class="fas fa-star text-warning font-16"></i></li>
-                                        <li class="list-inline-item"><i class="fas fa-star text-warning font-16 ms-n2"></i></li>
-                                        <li class="list-inline-item"><i class="fas fa-star text-warning font-16 ms-n2"></i></li>
-                                        <li class="list-inline-item"><i class="fas fa-star text-warning font-16 ms-n2"></i></li>
-                                        <li class="list-inline-item"><i class="fas fa-star-half text-warning font-16 ms-n2"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="white_card position-relative mb_20 ">
+                        <div className="card-body">
+                            <div className="ribbon1 rib1-primary"><span className="text-white text-center rib1-primary">50% off</span>
+                            </div>
+                            <img src="img/products/02.png" alt="" className="d-block mx-auto my-4" height="150" />
+                            <div className="row my-4">
+                                <div className="col"><span className="badge_btn_3  mb-1">Life Style</span> <a href
+                                        className="f_w_400 color_text_3 f_s_14 d-block">Unique Blue Bag</a></div>
+                                <div className="col-auto">
+                                    <h4 className="text-dark mt-0">$49.00 <small
+                                            className="text-muted font-14"><del>$99.00</del></small></h4>
+                                    <ul className="list-inline mb-0 product-review align-self-center">
+                                        <li className="list-inline-item"><i className="fas fa-star text-warning font-16"></i></li>
+                                        <li className="list-inline-item"><i className="fas fa-star text-warning font-16 ms-n2"></i></li>
+                                        <li className="list-inline-item"><i className="fas fa-star text-warning font-16 ms-n2"></i></li>
+                                        <li className="list-inline-item"><i className="fas fa-star text-warning font-16 ms-n2"></i></li>
+                                        <li className="list-inline-item"><i className="fas fa-star-half text-warning font-16 ms-n2"></i>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-grid">
-                                <button class="btn_2 ">Add To Cart</button>
+                            <div className="d-grid">
+                                <button className="btn_2 ">Add To Cart</button>
                             </div>
                         </div>
 

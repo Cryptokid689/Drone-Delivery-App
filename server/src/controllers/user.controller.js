@@ -23,7 +23,7 @@ export const createNewUser = async (req, res) => {
       .then((user) => {
         if (user) {
           console.log(user); // Found user
-          return res.status(200).json({ok: false, exists: true, body: user})
+          return res.status(200).json({ok: true, exists: true, body: user})
         } else {
             console.log(`User with email ${email} not found. creating new user...`);
   
@@ -66,7 +66,7 @@ export const loginUser = async(req, res) => {
       //Check if the user exists by using their email
       const user = await UserDatabase.findOne({ email: email })
       if(!user) {
-        return res.status(400).json({ok: false, error: "invalid email" })
+        return res.status(400).json({ok: false, error: "No account exists with that email" })
       }
   
       //Check if password is correct
@@ -76,7 +76,7 @@ export const loginUser = async(req, res) => {
       
       return await res.status(200).json({ ok: true, body: user })
     } catch (error) {
-        return res.status(500).json({ ok: false, error: error.message })
+        return res.status(500).json({ ok: false, error: "server error. try again" })
     }
 }
 

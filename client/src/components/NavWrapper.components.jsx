@@ -24,19 +24,17 @@ const navElements = [
 
 function NavWrapper({ children }) {
     const [open, setOpen] = React.useState(false)
-    // const navigate = useNavigate()
-    // const location = useLocation()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const navElementsHTML = navElements.map(el => {
+        const isActive = location.pathname === `/admin/${el.name.split(" ")[0]}`
         return <li style={{ cursor: "pointer" }}>
-                    {/* <a onClick={() => navigate(`admin/${el.name.split(" ").join("")}`)} href aria-expanded="false"> */}
-                    <a href aria-expanded="false">
-                        <div class="nav_icon_small">
+                    <a style={isActive ? {textDecoration: "underline"} : {}} onClick={() => navigate(`/admin/${el.name.split(" ")[0]}`)} href aria-expanded="false">
+                        <div className="nav_icon_small">
                             <el.icon />
                         </div>
-                        <div class="nav_title">
-                            <span>{capitalizeWords(el.name)}</span>
-                        </div>
+                        <div className="nav_title">{capitalizeWords(el.name)}</div>
                     </a>
                 </li>
     })
@@ -44,14 +42,15 @@ function NavWrapper({ children }) {
     return (
         <>
             <nav class={`sidebar dark_sidebar ${open && "active_sidebar"}`}>
-                <div class="logo d-flex justify-content-between">
-                    <a class="large_logo" href="index-2.html"><img src={bigLogo} alt="pic" /></a>
-                    <a class="small_logo" href="index-2.html"><img src={miniLogo} alt="pic" /></a>
-                    <div onClick={() => setOpen(false)} class="sidebar_close_icon d-lg-none">
+                <div className="logo d-flex justify-content-between">
+                    {/* <a className="large_logo" href><img src={bigLogo} alt="pic" /></a>
+                    <a className="small_logo" href><img src={miniLogo} alt="pic" /></a> */}
+                    <a style={{color: "white"}} href>ADMIN LOGO</a>
+                    <div onClick={() => setOpen(false)} className="sidebar_close_icon d-lg-none">
                         <CloseIcon size='50' sx={{ color: "white", cursor: "pointer" }}/>
                     </div>
                 </div>
-                <ul id="sidebar_menu" class="metismenu">{navElementsHTML}</ul>
+                <ul id="sidebar_menu" className="metismenu">{navElementsHTML}</ul>
             </nav>
             <section className='main_content dashboard_part large_header_bg'>
                 <HorizontalNav openNav={() => setOpen(true)}/>

@@ -7,7 +7,7 @@ function WaitingForAdminApproval(props) {
     return (
         <div className='approval-waiting'>
             <h1>Waiting for the confirmation of the Administrator</h1>
-            {completed && <button onClick={() => props.goToElement(props.index+1)} type="button" class="btn btn-outline-success mb-3">Proceed</button>}
+            {completed && <button onClick={() => props.goToElement(props.index+1)} type="button" className="btn btn-outline-success mb-3">Proceed</button>}
         </div>
     )
 }

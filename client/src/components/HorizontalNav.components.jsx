@@ -8,26 +8,26 @@ function HorizontalNav(props) {
 
 
     return (
-        <div class="container-fluid g-0">
-            <div class="row">
-                <div class="col-lg-12 p-0 ">
-                    <div class="header_iner d-flex justify-content-between align-items-center">
-                        <div style={{cursor: "pointer"}} onClick={props.openNav} class="sidebar_icon d-lg-none">
+        <div className="container-fluid g-0">
+            <div className="row">
+                <div className="col-lg-12 p-0 ">
+                    <div className="header_iner d-flex justify-content-between align-items-center">
+                        <div style={{cursor: "pointer"}} onClick={props.openNav} className="sidebar_icon d-lg-none">
                             <MenuIcon />
                         </div>
-                        <div style={{marginLeft: "50px"}} class="header_right d-flex justify-content-between align-items-center">
-                            <div class="profile_info d-flex align-items-center">
-                                <div class="profile_thumb mr_20">
+                        <div style={{marginLeft: "50px"}} className="header_right d-flex justify-content-between align-items-center">
+                            <div className="profile_info d-flex align-items-center">
+                                <div className="profile_thumb mr_20">
                                     <AccountCircleIcon sx={{ height: 40, width: 40 }}/>
                                 </div>
-                                <div class="author_name">
-                                    <h4 class="f_s_15 f_w_500 mb-0">Jiue Anderson</h4>
-                                    <p class="f_s_12 f_w_400">Manager</p>
+                                <div className="author_name">
+                                    <h4 className="f_s_15 f_w_500 mb-0">Jiue Anderson</h4>
+                                    <p className="f_s_12 f_w_400">Administrator</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="line_icon open_miniSide d-none d-lg-block">
-                            <button type="button" class="btn mb-3 btn-primary"><LogoutIcon />&nbsp;Logout</button>
+                        <div className="line_icon open_miniSide d-none d-lg-block">
+                            <button style={{background: "#182444"}} type="button" className="btn mb-3 btn-primary"><LogoutIcon />&nbsp;Logout</button>
                         </div>
                     </div>
                 </div>

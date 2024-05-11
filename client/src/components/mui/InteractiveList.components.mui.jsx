@@ -6,7 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import FormDialog from './FormDialog.components.mui';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
@@ -43,7 +42,7 @@ export default function InteractiveList() {
     <FormDialog open={open} tip="address" title={"Add a new address"} onSubmit={createNewAddress} handleClose={handleClose}/>
     <Grid container sx={{flexDirection: "row"}} spacing={2}>
         <Grid item xs={12} md={6}>
-            <h2 class="me-4">Other Addresses</h2>
+            <h2 className="me-4">Other Addresses</h2>
           <Demo>
             <List dense={true}>
               {generate(
@@ -54,14 +53,14 @@ export default function InteractiveList() {
                     </IconButton>
                   }
                 >
-                  <ListItemText primary="Single-line item"/>
+                  <ListItemText primary="Address 1"/>
                 </ListItem>,
               )}
             </List>
           </Demo>
         </Grid>
         <IconButton onClick={handleClickOpen} sx={{height: "50px"}} edge="end" aria-label="add">
-            <AddBoxIcon sx={{color: "green", height: "100px"}} />
+            <AddBoxIcon sx={{color: "#ffb11f", height: "100px"}} />
         </IconButton>
     </Grid>
     </>

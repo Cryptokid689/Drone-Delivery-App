@@ -1,6 +1,9 @@
 .navbar {
     z-index: 345678;
-    position: relative;
+    position: fixed;
+    width: 100vw;
+    /* height: 100vh; */
+    /* margin-top: 350px; */
     display: flex;
     padding: 10px;
     background-color: #373063;
@@ -9,6 +12,9 @@
     box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
+}
+.spacer {
+    height: 70px;
 }
 
 .nav-items > ul > li {
@@ -25,17 +31,27 @@
     text-decoration: none;
 }
 
-.nav-items > ul > li::after {
+.regular-nav::after {
     content: "";
     position: absolute;
     width: 100%;
     height: 0.17rem;
-    background-color: rgb(255, 177, 31);
+    background-color: #ffb11f;
     left: 0;
     bottom: 0;
     transform-origin: 0% 100%;
     transform: scaleX(0);
     transition: transform 0.3s ease;
+}
+
+.current-nav::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.17rem;
+    background-color: #ffb11f;
+    left: 0;
+    bottom: 0;
 }
 
 .nav-items > ul > li:hover::after {
@@ -44,7 +60,7 @@
 
 .nav-logo a,
 .nav-button a {
-    color: white;
+    color: white !important;
     list-style: none;
     text-decoration: none;
     display: flex;
@@ -56,7 +72,7 @@
 
 .nav-button {
     background-color: rgb(255, 177, 31);
-    border-radius: 50px;
+    border-radius: 10px;
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -214,4 +230,16 @@
     align-items: center;
     gap: 10px;
     flex-direction: row;
+}
+
+.admin-button {
+    background-color: white;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+
+.admin-button:hover {
+    background-color: black;
+    color: white;
 }

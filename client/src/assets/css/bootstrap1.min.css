@@ -1763,6 +1763,28 @@ progress {
 	color: #fff;
 	border-color: #373b3e;
 }
+.table-user {
+	--bs-table-bg: #373063;
+	--bs-table-striped-bg: #251f4e;
+	--bs-table-striped-color: #fff;
+	--bs-table-active-bg: #373b3e;
+	--bs-table-active-color: #fff;
+	--bs-table-hover-bg: #323539;
+	--bs-table-hover-color: #fff;
+	color: #fff;
+	border-color: #373b3e;
+}
+.table-admin {
+	--bs-table-bg: #0f1a34;
+	--bs-table-striped-bg: #182444;
+	--bs-table-striped-color: #fff;
+	--bs-table-active-bg: #373b3e;
+	--bs-table-active-color: #fff;
+	--bs-table-hover-bg: #323539;
+	--bs-table-hover-color: #fff;
+	color: #fff;
+	border-color: #373b3e;
+}
 .table-responsive {
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;

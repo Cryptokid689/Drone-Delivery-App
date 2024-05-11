@@ -9,7 +9,7 @@ import WaitingForRecipientApproval from '../components/delivery processes/Waitin
 import WaitingForAdminApproval from '../components/delivery processes/WaitingForAdminApproval.components';
 
 
-function MakeDelivery() {
+function CurrentDelivery() {
     const elements = [
         { index: 0, description: "Select Drone", completed: false, component: SelectDrones },
         { index: 1, description: "Enter Delivery Info", completed: false, component: DeliveryForm },
@@ -52,4 +52,4 @@ function MakeDelivery() {
 }
 
 
-export default MakeDelivery
+export default CurrentDelivery
