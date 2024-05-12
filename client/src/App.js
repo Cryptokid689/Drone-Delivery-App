@@ -23,7 +23,7 @@ function App() {
         <Route path="/user/register" element={<><HomeNavbar/><Register /></>} />
         <Route path="/user/login" element={<><HomeNavbar/><Login /></>} />
         <Route path="/user/profile" element={<><UserNavbar/><UserProfile /></>} />
-        <Route path="/user/drones" element={<><UserNavbar/><MakeDelivery /></>} />
+        <Route path="/user/drones" element={<><UserNavbar/><MakeDelivery type="new" /></>} />
         <Route path="/user/sent" element={<><UserNavbar/><UserDeliveries type="sent" /></>} />
         <Route path="/user/received" element={<><UserNavbar/><UserDeliveries type="received" /></>} />
         <Route path="/user/friends" element={<><UserNavbar/><Friends /></>} />

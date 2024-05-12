@@ -31,6 +31,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: ""
     },
+    otherAddresses: {
+        type: Array,
+        default: [],
+    },
     friends: {
         type: Array,
         default: [],

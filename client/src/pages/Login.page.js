@@ -55,7 +55,7 @@ function Login() {
 
     return (
         loginMutation.isLoading ? 
-        <div style={{position: "absolute", marginTop: "100px", marginLeft: "20vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+        <div style={{position: "absolute", marginTop: "100px", marginLeft: "40vw", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <h1 style={{textAlign: "center"}}>Logging you back in.<br></br> Please Wait...</h1>
             <br></br>
             <CircularProgress sx={{color: "#ffb11f"}} size={100} />

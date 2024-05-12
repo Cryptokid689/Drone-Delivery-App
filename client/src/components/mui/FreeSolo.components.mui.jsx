@@ -6,7 +6,6 @@ export default function FreeSolo(props) {
   return (
       <Autocomplete
         id="free-solo-demo"
-        
         freeSolo
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => <TextField {...params} label={props.label} />}

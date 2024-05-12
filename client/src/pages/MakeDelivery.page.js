@@ -7,23 +7,49 @@ import ProcessPayment from '../components/delivery processes/ProcessPayment.comp
 import Completed from '../components/delivery processes/Completed.components';
 import WaitingForRecipientApproval from '../components/delivery processes/WaitingForRecipientApproval.components';
 import WaitingForAdminApproval from '../components/delivery processes/WaitingForAdminApproval.components';
+import { useDispatch, useSelector } from 'react-redux';
 
 
-function MakeDelivery() {
-    const elements = [
-        { index: 0, description: "Select Drone", completed: false, component: SelectDrones },
-        { index: 1, description: "Enter Delivery Info", completed: false, component: DeliveryForm },
+function MakeDelivery(props) {
+    const userInfo = useSelector(state => state.user)
+    const [deliveryDetails, setDeliveryDetails] = React.useState({
+        sender: userInfo._id,
+        receiver: "",
+        droneType: "",
+        pickupLocation: "",
+        deliveryLocation: "",
+        deliveryScheduledDate: "",
+        payloadWeight: null
+    })
+    console.log(deliveryDetails)
+
+    let elements = [
+        { index: 0, description: "Select Drone", completed: false, component: props => SelectDrones({setDeliveryDetails: setDeliveryDetails, ...props}) },
+        { index: 1, description: "Enter Delivery Info", completed: false, component: props => DeliveryForm({setDeliveryDetails: setDeliveryDetails, ...props}) },
         { index: 2, description: "Wait for recipient's approval", completed: false, component: WaitingForRecipientApproval },
         { index: 3, description: "Process payment", completed: false, component: ProcessPayment },
         { index: 4, description: "Wait for admin approval", completed: false, component: WaitingForAdminApproval },
         { index: 5, description: "Completed", completed: false, component: Completed },
     ]
     const [processes, setProcesses] = React.useState(elements)
-    const [currentProcess, setCurrentProcess] = React.useState(processes[0])
+    console.log(processes)
+    const [currentProcess, setCurrentProcess] = React.useState(processes[1])
 
     function goToElement(index) {
-        // if(index > 0 && processes[index].completed)
+        // if(index > 0) {
+        //     if(processes[index-1].completed) {
+        //         setCurrentProcess(processes.find(process => process.index === index))
+        //     }
+        // } else {
+        //     setCurrentProcess(processes.find(process => process.index === index))
+        // }
         setCurrentProcess(processes.find(process => process.index === index))
+    }
+
+    function completeProcess(index) {
+        const updatedProcesses = [...processes]
+        updatedProcesses.find(process => process.index === index).completed = true
+        setProcesses(updatedProcesses)
     }
 
     return (
@@ -39,9 +65,17 @@ function MakeDelivery() {
                                 
                             </div>
                         </div>
-                        <div className="col-lg-9">
+                        <div style={{height: "85vh"}} className="col-lg-9">
                             <div style={{...centerStyle, flexDirection: "column"}} className="white_card card_height_100 mb_30">
-                                <currentProcess.component index={currentProcess.index} goToElement={goToElement}/>
+                                <currentProcess.component 
+                                    setProcesses={setProcesses}
+                                    deliveryDetails={deliveryDetails} 
+                                    type={props.type} 
+                                    index={currentProcess.index} 
+                                    isCompleted={currentProcess.completed} 
+                                    completeProcess={completeProcess}
+                                    goToElement={goToElement}
+                                />
                             </div>
                         </div>
                     </div>

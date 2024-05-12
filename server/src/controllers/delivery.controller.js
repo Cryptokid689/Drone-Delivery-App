@@ -1,5 +1,6 @@
 import DeliveryDatabase from "../models/delivery.models.js"
 import DroneDatabase from "../models/drone.models.js"
+import UserDatabase from "../models/user.models.js"
 
 const prices = {
     small: 15000,
@@ -20,10 +21,15 @@ export const createDelivery = async(req, res) => {
         } = req.body
 
         const drone = await DroneDatabase.findOne({ type: droneType, isAvailable: true })
+        const receiverUser = await UserDatabase.findOne({ email: receiver })
+
+        if(!receiverUser) {
+            return res.status(404).json({ ok: false, error: "The user You are delivering to does not exist" })
+        }
 
         const newDelivery = new DeliveryDatabase({
             sender,
-            receiver,
+            receiver: receiverUser._id,
             drone: drone._id,
             pickupLocation,
             deliveryLocation,

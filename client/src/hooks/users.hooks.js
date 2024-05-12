@@ -1,8 +1,6 @@
 const API_URL = "http://localhost:8000"
 
 export const userPostRequest = async ({postDetails, route}) => {
-    console.log("postdetails", postDetails)
-    console.log("route", route)
     const response =  await fetch(`${API_URL}/users/${route}`, {
         method: "POST",
         headers: {
@@ -11,6 +9,12 @@ export const userPostRequest = async ({postDetails, route}) => {
         body: JSON.stringify(postDetails)
     })
 
+    const data = await response.json()
+    return data
+}
+
+export const userGetRequest = async ({ route }) => {
+    const response =  await fetch(`${API_URL}/users/${route}`)
     const data = await response.json()
     return data
 }

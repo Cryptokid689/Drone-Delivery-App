@@ -1520,7 +1520,7 @@ th:focus {
 
 .cs_modal .modal-body input,
 .cs_modal .modal-body .nice_Select {
-    height: 50px;
+    height: 10px;
     line-height: 50px;
     padding: 10px 20px;
     border: 1px solid #f1f3f5;

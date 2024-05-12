@@ -57,9 +57,15 @@
 }
 
 .select-drone:hover {
-    border: 3px solid blue;
+    background-color: #ffc68c;
     cursor: pointer;
 }
+
+.selected {
+    background-color: #ffb11f;
+    cursor: pointer;
+}
+
 
 .select-drone-unavailable-div {
     background-color: grey;

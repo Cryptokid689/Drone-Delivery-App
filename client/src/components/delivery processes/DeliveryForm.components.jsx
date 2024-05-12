@@ -16,20 +16,22 @@ function DeliveryForm(props) {
                         <div style={{ backgroundColor: "#373063", padding: "10px" }} className="modal-header justify-content-center">
                             <h5 className="modal-title text_white">Enter Delivery Details</h5>
                         </div>
-                        <div className="modal-body">
+                        <div style={{height: "70vh"}} className="modal-body">
                             <form>
                                 <div>
-                                    <input type="number" min={1} max={"drone.maxCapacity"} className="form-control" placeholder="Enter The Weight of the package in KG"/>
+                                    <input style={{height: "50px"}} type="number" min={1} max={"drone.maxCapacity"} className="form-control" placeholder="Enter The Weight of the package in KG"/>
                                 </div>
                                 <div>
-                                    <input type="email" className="form-control" placeholder="Enter Recipient's email"/>
+                                    <input style={{height: "50px"}} type="email" className="form-control" placeholder="Enter Recipient's email"/>
                                 </div>
                                 <div>
                                     <FreeSolo label="Enter Pickup Location"/>
+                                </div>
+                                <div>
                                     <FreeSolo label="Enter Delivery Location"/>
                                 </div>
                                 <div>
-                                    <input type="date" min={new Date().toISOString().split('T')[0]} className="form-control" placeholder="Enter delivery date"/>
+                                    <input style={{height: "50px"}} type="date" min={new Date().toISOString().split('T')[0]} className="form-control" placeholder="Enter delivery date"/>
                                 </div>
                                 <a onClick={submitForm} style={{cursor: "pointer", userSelect: "none"}} href className="btn_1 full_width text-center">Confirm with Recipient and Proceed</a>
                                 

@@ -7,23 +7,34 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { CircularProgress } from '@mui/material';
 
+
 export default function FormDialog(props) {
-  const [loading, setLoading] = React.useState(false)
+
+  
   function handleSubmit(event) {
-    // props.onSubmit()
-    setLoading(true)
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget);
+    const formJson = Object.fromEntries(formData.entries());
+    const value = formJson[props.tip];
+
+    props.mutation.mutate({ postDetails: { userId: props.userId, field: props.field, value, type: "add" }, route: "updatelist" })
+    console.log(value);
   }
+
+  
+
   return (
     <React.Fragment>
       <Dialog
         open={props.open}
         onClose={props.handleClose}
+        disableBackdropClick={true}
         PaperProps={{
           component: 'form',
           onSubmit: event => handleSubmit(event),
         }}
       >
-      {loading ? <DialogContent sx={{background: "rgba(0, 0, 0, 0.87)"}}>
+      {props?.mutation.isLoading ? <DialogContent sx={{background: "rgba(0, 0, 0, 0.87)"}}>
         <CircularProgress size={100}/>
       </DialogContent> :
       <>
@@ -35,6 +46,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="name"
             name={props.tip}
+            sx={{width: "400px"}}
             label={props.tip}
             type="text"
             fullWidth

@@ -7,15 +7,19 @@ import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../styles/usernavbar.css"
+import { useDispatch } from 'react-redux';
+import { setUser } from '../state';
 
 
 function UserNavbar() {
     const [open, setOpen] = React.useState(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const location = useLocation()
     
     function logout() {
-
+        dispatch(setUser(null))
+        navigate("/")
     }
 
     
@@ -56,7 +60,7 @@ function UserNavbar() {
 
 
 {/* // MOBILE MENU */}
-            <div style={{display: open ? "flex": "none", transform: open ? "translateX(0%)": "translateX(-100%)"}} id="mobile-menu">
+            <div style={{marginTop: "60px", zIndex: 99999999999, display: open ? "flex": "none", transform: open ? "translateX(0%)": "translateX(-100%)"}} id="mobile-menu">
                 <div className="mobile-nav-items">
                     <ul>
                     <li onClick={()=>navigate("/user/profile")}>
@@ -76,13 +80,10 @@ function UserNavbar() {
                         </li>
                     </ul>
                 </div>
-                <div className="mobile-nav-button">
+                
+                <div className="nav-button">
                     <div className="anim-layer"></div>
-                    <a href>Log In</a>
-                </div>
-                <div className="mobile-nav-button">
-                    <div className="anim-layer"></div>
-                    <a href>Register</a>
+                    <a onClick={logout} href><LogoutIcon />Sign Out</a>
                 </div>
                 <div onClick={() => setOpen(false)} id="hamburger-cross">&#10006;</div>
             </div>
