@@ -4,11 +4,11 @@ import {
     editDelivery, 
     getDelivery, 
     getReceiverDeliveries, 
-    getAllDeliveries, 
+    getAdminAllDeliveries, 
     getSenderDeliveries,
-    getPendingDeliveries,
-    getAdminUnApprovedDeliveries,
-    getCompletedDeliveries
+    getAdminPendingDeliveries,
+    getCompletedDeliveries,
+    getAdminUnProcessedDeliveries
 } from "../controllers/delivery.controller.js"
 
 const deliveryRouter = express.Router()
@@ -17,9 +17,9 @@ deliveryRouter.post("/create", createDelivery)
 deliveryRouter.post("/edit", editDelivery)
 deliveryRouter.get("/id/:id", getDelivery)
 
-deliveryRouter.get("/all", getAllDeliveries)
-deliveryRouter.get("/pending", getPendingDeliveries)
-deliveryRouter.get("/unapproved", getAdminUnApprovedDeliveries)
+deliveryRouter.get("/all", getAdminAllDeliveries)
+deliveryRouter.get("/pending", getAdminPendingDeliveries)
+deliveryRouter.get("/unapproved", getAdminUnProcessedDeliveries)
 deliveryRouter.get("/completed", getCompletedDeliveries)
 
 deliveryRouter.get("/sender/:senderId", getSenderDeliveries)

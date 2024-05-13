@@ -10,7 +10,7 @@ import WaitingForAdminApproval from '../components/delivery processes/WaitingFor
 import { useDispatch, useSelector } from 'react-redux';
 
 
-function MakeDelivery(props) {
+function MakeDelivery() {
     const userInfo = useSelector(state => state.user)
     const [deliveryDetails, setDeliveryDetails] = React.useState({
         sender: userInfo._id,
@@ -19,7 +19,7 @@ function MakeDelivery(props) {
         pickupLocation: "",
         deliveryLocation: "",
         deliveryScheduledDate: "",
-        payloadWeight: null
+        payloadWeight: ""
     })
     console.log(deliveryDetails)
 
@@ -33,17 +33,17 @@ function MakeDelivery(props) {
     ]
     const [processes, setProcesses] = React.useState(elements)
     console.log(processes)
-    const [currentProcess, setCurrentProcess] = React.useState(processes[1])
+    const [currentProcess, setCurrentProcess] = React.useState(processes[0])
 
     function goToElement(index) {
-        // if(index > 0) {
-        //     if(processes[index-1].completed) {
-        //         setCurrentProcess(processes.find(process => process.index === index))
-        //     }
-        // } else {
-        //     setCurrentProcess(processes.find(process => process.index === index))
-        // }
-        setCurrentProcess(processes.find(process => process.index === index))
+        if(index > 0) {
+            if(processes[index-1].completed) {
+                setCurrentProcess(processes.find(process => process.index === index))
+            }
+        } else {
+            setCurrentProcess(processes.find(process => process.index === index))
+        }
+        // setCurrentProcess(processes.find(process => process.index === index))
     }
 
     function completeProcess(index) {
@@ -70,7 +70,7 @@ function MakeDelivery(props) {
                                 <currentProcess.component 
                                     setProcesses={setProcesses}
                                     deliveryDetails={deliveryDetails} 
-                                    type={props.type} 
+                                    type="new" 
                                     index={currentProcess.index} 
                                     isCompleted={currentProcess.completed} 
                                     completeProcess={completeProcess}

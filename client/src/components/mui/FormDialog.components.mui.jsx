@@ -28,7 +28,6 @@ export default function FormDialog(props) {
       <Dialog
         open={props.open}
         onClose={props.handleClose}
-        disableBackdropClick={true}
         PaperProps={{
           component: 'form',
           onSubmit: event => handleSubmit(event),

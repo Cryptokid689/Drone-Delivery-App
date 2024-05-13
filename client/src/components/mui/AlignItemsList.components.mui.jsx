@@ -13,7 +13,7 @@ export default function AlignItemsList(props) {
   const friendsHTML = props.friends.map(friend => {
     return (
       <>
-        <ListItem sx={{gap: "20px", ...centerStyle}}>
+        <ListItem key={friend.email} sx={{gap: "20px", ...centerStyle}}>
           <ListItemAvatar>
             <AccountCircleIcon sx={{width: 70, height: 70, color: "white"}}/>
           </ListItemAvatar>

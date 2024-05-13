@@ -1,11 +1,11 @@
 import React from 'react';
-import CallMadeIcon from '@mui/icons-material/CallMade';
+import CallReceivedIcon from '@mui/icons-material/CallReceived';
 
 
-function UserDeliveries(props) {
+function UserRecievedDeliveries() {
 
     return <div style={{width: "90%", margin: "auto"}}>
-        <h1 style={{paddingTop: "20px", paddingLeft: "20px"}}><CallMadeIcon sx={{height: 40, width: 40}}/>Sent Deliveries</h1>
+        <h1 style={{paddingTop: "20px", paddingLeft: "20px"}}><CallReceivedIcon sx={{height: 40, width: 40}}/>Sent Deliveries</h1>
         <div className="white_card_body">
             <div className="QA_section">
                 <div className="table-responsive">
@@ -13,7 +13,7 @@ function UserDeliveries(props) {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Sender</th>
+                                <th scope="col">Reciever</th>
                                 <th scope="col">Last</th>
                                 <th scope="col">Status</th>
                                 <th scope="col"></th>
@@ -55,4 +55,4 @@ function UserDeliveries(props) {
 }
 
 
-export default UserDeliveries
+export default UserRecievedDeliveries

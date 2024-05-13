@@ -23,6 +23,10 @@ export const createDelivery = async(req, res) => {
         const drone = await DroneDatabase.findOne({ type: droneType, isAvailable: true })
         const receiverUser = await UserDatabase.findOne({ email: receiver })
 
+        if(!drone) {
+            return res.status(404).json({ ok: false, error: "Unfortunately the drone you selected is no longer available" })
+        }
+
         if(!receiverUser) {
             return res.status(404).json({ ok: false, error: "The user You are delivering to does not exist" })
         }
@@ -99,38 +103,66 @@ export const getDelivery = async(req, res) => {
 
         const delivery = await DeliveryDatabase.findById(id)
         if(!delivery) return res.status(404).json({ ok: false, error: "delivery doesn't exist" })
+        const receiver = await UserDatabase.findById(delivery.receiver)
+        const drone = await UserDatabase.findById(delivery.drone)
 
-        return res.status(200).json({ ok: true, body: delivery })
+        return res.status(200).json({
+                ok: true, 
+                body: {
+                    ...delivery._doc, 
+                    receiver: { _id: receiver._id, fullName: receiver.firstName + " " + receiver.lastName, email: receiver.email },
+                    drone: { _id: drone._id, drone: drone.type }
+                } 
+            })
     } catch (error) {
         return res.status(500).json({ ok: false, error: "couldn't get delivery. try again" })
     }
 }
 
-export const getAllDeliveries = async(req, res) => {
+export const getAdminAllDeliveries = async(req, res) => {
     try {
         const allDeliveries = await DeliveryDatabase.find(
         { 
             senderApproval: "approved",
             receiverApproval: "approved",
+            haspaid: true
 
-        }, { '__v': 0 }).sort({ createdAt: -1 })
+        }, { '__v': 0 })
+        .populate({
+            path: 'sender',
+            select: '_id email firstName lastName'
+        })
+        .populate({
+            path: 'receiver',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
         return res.status(200).json({ ok: true, body: allDeliveries })
     } catch (error) {
         return res.status(500).json({ ok: false, error: "couldn't get deliveries. try again" })
     }
 }
 
-export const getPendingDeliveries = async(req, res) => {
+export const getAdminPendingDeliveries = async(req, res) => {
     try {
         const pendingDeliveries = await DeliveryDatabase.find(
         {
             senderApproval: "approved",
             adminApproval: "approved",
             receiverApproval: "approved",
-            // hasPaid: false,
+            hasPaid: true,
             completed: false,
         }, 
-        { '__v': 0 }).sort({ createdAt: -1 })
+        { '__v': 0 })
+        .populate({
+            path: 'sender',
+            select: '_id email firstName lastName'
+        })
+        .populate({
+            path: 'receiver',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
 
 
         return res.status(200).json({ ok: true, body: pendingDeliveries })
@@ -139,18 +171,29 @@ export const getPendingDeliveries = async(req, res) => {
     }
 }
 
-export const getAdminUnApprovedDeliveries = async(req, res) => {
+export const getAdminUnProcessedDeliveries = async(req, res) => {
     try {
-        const unApprovedDeliveries = await DeliveryDatabase.find(
+        const unProcessedDeliveries = await DeliveryDatabase.find(
         {
             senderApproval: "approved",
             receiverApproval: "approved",
             adminApproval: "none",
+            hasPaid: true,
+            completed: false
         }, 
-        { '__v': 0 }).sort({ createdAt: -1 })
+        { '__v': 0 })
+        .populate({
+            path: 'sender',
+            select: '_id email firstName lastName'
+        })
+        .populate({
+            path: 'receiver',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
 
 
-        return res.status(200).json({ ok: true, body: unApprovedDeliveries })
+        return res.status(200).json({ ok: true, body: unProcessedDeliveries })
     } catch (error) {
         return res.status(500).json({ ok: false, error: "couldn't get deliveries. try again" })
     }
@@ -166,7 +209,16 @@ export const getCompletedDeliveries = async(req, res) => {
             hasPaid: true,
             completed: true
         }, 
-        { '__v': 0 }).sort({ createdAt: -1 })
+        { '__v': 0 })
+        .populate({
+            path: 'sender',
+            select: '_id email firstName lastName'
+        })
+        .populate({
+            path: 'receiver',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
 
 
         return res.status(200).json({ ok: true, body: completedDeliveries })
@@ -177,14 +229,19 @@ export const getCompletedDeliveries = async(req, res) => {
 
 export const getReceiverDeliveries = async(req, res) => {
     try {
-        const receiverId = req.params
+        const {receiverId} = req.params
         const receiverDeliveries = await DeliveryDatabase.find(
         { 
             receiver: receiverId,
             senderApproval: "approved",
-            receiverApproval: "approved",
+            receiverApproval: { $in: ["approved", "none"] },
 
-        }, { '__v': 0 }).sort({ createdAt: -1 })
+        }, { '__v': 0 })
+        .populate({
+            path: 'sender',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
         return res.status(200).json({ ok: true, body: receiverDeliveries })
     } catch (error) {
         return res.status(500).json({ ok: false, error: "couldn't get deliveries. try again" })
@@ -193,15 +250,21 @@ export const getReceiverDeliveries = async(req, res) => {
 
 export const getSenderDeliveries = async(req, res) => {
     try {
-        const senderId = req.params
+        const {senderId} = req.params
         const senderDeliveries = await DeliveryDatabase.find(
         { 
             sender: senderId,
             senderApproval: "approved"
 
-        }, { '__v': 0 }).sort({ createdAt: -1 })
+        }, { '__v': 0 })
+        .populate({
+            path: 'receiver',
+            select: '_id email firstName lastName'
+        })
+        .sort({ createdAt: -1 })
         return res.status(200).json({ ok: true, body: senderDeliveries })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ ok: false, error: "couldn't get deliveries. try again" })
     }
 }

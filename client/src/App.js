@@ -3,7 +3,6 @@ import NavWrapper from "./components/NavWrapper.components";
 import UserNavbar from "./components/UserNavbar.components";
 import Friends from "./pages/Friends.page";
 import MakeDelivery from "./pages/MakeDelivery.page";
-import UserDeliveries from "./pages/UserDeliveries.page";
 import UserProfile from "./pages/UserProfile.page";
 import AdminDeliveries from "./pages/AdminDeliveries.page";
 import AdminHome from "./pages/AdminHome.page";
@@ -14,6 +13,9 @@ import HomeNavbar from './components/HomeNavbar.components';
 import Register from './pages/Register.page';
 import Login from './pages/Login.page';
 import AdminLogin from './pages/AdminLogin.page';
+import UserViewSentDelivery from './pages/UserViewSentDelivery.page';
+import UserSentDeliveries from './pages/UserSentDeliveries.page';
+import UserRecievedDeliveries from './pages/UserReceivedDeliveries.page';
 
 
 function App() {
@@ -23,9 +25,11 @@ function App() {
         <Route path="/user/register" element={<><HomeNavbar/><Register /></>} />
         <Route path="/user/login" element={<><HomeNavbar/><Login /></>} />
         <Route path="/user/profile" element={<><UserNavbar/><UserProfile /></>} />
-        <Route path="/user/drones" element={<><UserNavbar/><MakeDelivery type="new" /></>} />
-        <Route path="/user/sent" element={<><UserNavbar/><UserDeliveries type="sent" /></>} />
-        <Route path="/user/received" element={<><UserNavbar/><UserDeliveries type="received" /></>} />
+        <Route path="/user/drones" element={<><UserNavbar/><MakeDelivery/></>} />
+        <Route path="/user/sent" element={<><UserNavbar/><UserSentDeliveries /></>} />
+        <Route path="/user/sent/view/:id" element={<><UserNavbar/><UserViewSentDelivery/></>} />
+        <Route path="/user/received" element={<><UserNavbar/><UserRecievedDeliveries /></>} />
+        {/* <Route path="/user/received/view/:id" element={<><UserNavbar/><UserViewSentDelivery/></>} /> */}
         <Route path="/user/friends" element={<><UserNavbar/><Friends /></>} />
 
 
