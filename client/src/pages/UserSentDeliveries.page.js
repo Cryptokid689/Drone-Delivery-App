@@ -6,9 +6,11 @@ import { deliveryGetRequest } from '../hooks/users.hooks';
 import ErrorBoundary from '../components/ErrorBoundary.components';
 import { CircularProgress } from '@mui/material';
 import { formatDate, formatTime, getDeliveryStatus } from '../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 
 function UserSentDeliveries() {
+    const navigate = useNavigate()
     const userInfo = useSelector(state => state.user)
     const getUserSentDeliveriesQuery = useQuery("get users sent deliveries", () => deliveryGetRequest({ route: `sender/${userInfo._id}` }))
     const tableRowsHTML = getUserSentDeliveriesQuery.data?.body.map((delivery, i) => {
@@ -19,7 +21,7 @@ function UserSentDeliveries() {
                     <td>{delivery.receiver.email}</td>
                     <td>{formatDate(delivery.deliveryScheduledDate)} by {formatTime(delivery.deliveryScheduledDate)}</td>
                     {statusObj.status === "ACTIVE" ? <td><span className='current'>ACTIVE</span></td> : <td sx={{color: statusObj.color}}>{statusObj.status}</td>}
-                    <td><span className='view-button'>View</span></td>
+                    <td><span onClick={() => navigate(`/user/sent/view/${delivery._id}`)} className='view-button'>View</span></td>
                 </tr>
     })
     return ( 

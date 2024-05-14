@@ -7,7 +7,7 @@ function ErrorBoundary({ isError, message, children }) {
   if (isError) {
     return (
       <div style={{...centerStyle, flexDirection: "column", width: "600px", margin: " 50px auto", }}>
-        <h2>{message}</h2>
+        <h2 style={{textAlign: "center"}}>{message}</h2>
         <button style={{background: "#ffb11f"}} type="button" className="btn mb-3 btn-primary"><ReplayIcon />&nbsp;Retry</button>
     </div>
     )

@@ -6,6 +6,7 @@ export default function FreeSolo(props) {
   return (
       <Autocomplete
         id="free-solo-demo"
+        disabled={props.disabled}
         freeSolo
         options={props.options}
         value={props.value || ""}

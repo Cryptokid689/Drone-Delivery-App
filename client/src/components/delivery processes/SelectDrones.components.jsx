@@ -63,7 +63,7 @@ function SelectDrones(props) {
                         <div className="col-12">
                             <div className="page_title_box d-flex align-items-center">
                                 <div style={{width: "100%"}} className="page_title_left">
-                                    <h3 style={{textAlign: "center", width: "100%", padding: "0"}} className="f_s_30 f_w_700 dark_text">Select a Drone</h3>
+                                    <h3 style={{textAlign: "center", width: "100%", padding: "0"}} className="f_s_30 f_w_700 dark_text">{props.type === "new" ? "Select a Drone": "Selected Drone"}</h3>
                                 </div>
                             </div>
                         </div>

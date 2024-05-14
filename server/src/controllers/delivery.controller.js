@@ -104,8 +104,7 @@ export const getDelivery = async(req, res) => {
         const delivery = await DeliveryDatabase.findById(id)
         if(!delivery) return res.status(404).json({ ok: false, error: "delivery doesn't exist" })
         const receiver = await UserDatabase.findById(delivery.receiver)
-        const drone = await UserDatabase.findById(delivery.drone)
-
+        const drone = await DroneDatabase.findById(delivery.drone)
         return res.status(200).json({
                 ok: true, 
                 body: {
@@ -115,6 +114,7 @@ export const getDelivery = async(req, res) => {
                 } 
             })
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ ok: false, error: "couldn't get delivery. try again" })
     }
 }

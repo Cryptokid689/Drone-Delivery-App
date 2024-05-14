@@ -28,6 +28,8 @@ export default function FriendsFreeSolo(props) {
       <Autocomplete
         id="free-solo-demo"
         freeSolo
+        disabled={props.disabled}
+        sx={{color: "black", userSelect: "none"}}
         getOptionLabel={(option) => handleGetOption(option)}
         options={props.options}
         value={props.value || ""}

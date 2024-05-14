@@ -24,10 +24,7 @@ html {
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
-::selection {
-  color: #fff;
-  background: #000;
-}
+
 ::-webkit-scrollbar {
   width: 7px;
 }

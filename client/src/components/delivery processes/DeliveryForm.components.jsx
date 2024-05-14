@@ -31,7 +31,7 @@ function DeliveryForm(props) {
         onSuccess: data => {
             console.log(data)
             if(data.ok) {
-                // navigate("/user/delivery/current")
+                navigate(`/user/sent/view/${data.body._id}`)
                 // props.completeProcess(props.index)
                 // props.goToElement(props.index+1)
             } else {
@@ -68,14 +68,20 @@ function DeliveryForm(props) {
     }
 
     function submitForm() {
-        console.log(props.deliveryDetails)
-        const emptyFields = checkFormFields(props.deliveryDetails)
-        if (emptyFields.length > 0) {
-            const emptyFieldNames = emptyFields.join(', ');
-            alert(`Please fill in the following fields: ${emptyFieldNames}`);
-            return
+        if(props.type === "new") {
+            console.log(props.deliveryDetails)
+            const emptyFields = checkFormFields(props.deliveryDetails)
+            if (emptyFields.length > 0) {
+                const emptyFieldNames = emptyFields.join(', ');
+                alert(`Please fill in the following fields: ${emptyFieldNames}`);
+                return
+            }
+            deliveryMutation.mutate({ postDetails: props.deliveryDetails, route: "create" })
         }
-        deliveryMutation.mutate({ postDetails: props.deliveryDetails, route: "create" })
+
+        if(props.type === "old") {
+            props.goToElement(props.index+1)
+        }
     }
 
     return (
@@ -85,7 +91,7 @@ function DeliveryForm(props) {
                     <div>
                         <div className="modal-content cs_modal">
                             <div style={{ backgroundColor: "#373063", padding: "10px" }} className="modal-header justify-content-center">
-                                <h5 className="modal-title text_white">Enter Delivery Details</h5>
+                                <h5 className="modal-title text_white">{props.type === "new" && "Enter "}Delivery Details</h5>
                             </div>
                             <div style={{height: "70vh"}} className="modal-body">
                                 <form>
@@ -97,6 +103,7 @@ function DeliveryForm(props) {
                                             style={{height: "50px"}} 
                                             type="number" 
                                             min={1} 
+                                            disabled={props.type === "old"}
                                             max={maxCapacity[props.deliveryDetails.droneType]} 
                                             className="form-control" 
                                             placeholder="Enter The Weight of the package in KG"
@@ -107,6 +114,7 @@ function DeliveryForm(props) {
                                             value={props.deliveryDetails.receiver} 
                                             handleChange={handleRecipientChange} 
                                             options={friendsData} 
+                                            disabled={props.type === "old"}
                                             label="Enter Recipient's email"
                                         />
                                     </div>
@@ -116,6 +124,7 @@ function DeliveryForm(props) {
                                             handleChange={value => handleGenericChange(value, "pickupLocation")} 
                                             options={[userInfo.address, ...userInfo.otherAddresses]} 
                                             label="Enter Pickup Location"
+                                            disabled={props.type === "old"}
                                         />
                                     </div>
                                     <div style={{marginTop: "15px"}}>
@@ -124,6 +133,7 @@ function DeliveryForm(props) {
                                             handleChange={value => handleGenericChange(value, "deliveryLocation")} 
                                             options={[userInfo.address, ...userInfo.otherAddresses]} 
                                             label="Enter Delivery Location"
+                                            disabled={props.type === "old"}
                                         />
                                     </div>
                                     <div>
@@ -135,10 +145,11 @@ function DeliveryForm(props) {
                                             type="date" 
                                             min={new Date().toISOString().split('T')[0]} 
                                             className="form-control" 
+                                            disabled={props.type === "old"}
                                             placeholder="Enter delivery date"
                                         />
                                     </div>
-                                    <a onClick={submitForm} style={{cursor: "pointer", userSelect: "none"}} href className="btn_1 full_width text-center">Confirm with Recipient and Proceed</a>
+                                    <a onClick={submitForm} style={{cursor: "pointer", userSelect: "none"}} href className="btn_1 full_width text-center">{props.type === "new" && "Confirm with Recipient and "}Proceed</a>
                                     
                                 </form>
                             </div>
