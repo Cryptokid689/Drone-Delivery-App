@@ -120,6 +120,7 @@ export const getDelivery = async(req, res) => {
 }
 
 export const getAdminAllDeliveries = async(req, res) => {
+    console.log("dfghgfds")
     try {
         const allDeliveries = await DeliveryDatabase.find(
         { 

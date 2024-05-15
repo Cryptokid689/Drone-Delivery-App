@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:8000"
+const API_URL = "https://fluffy-computing-machine-q594g6r44qp34j95-8000.app.github.dev/"
+// const API_URL = "http://localhost:8000"
 
 export const userPostRequest = async ({postDetails, route}) => {
     const response =  await fetch(`${API_URL}/users/${route}`, {
